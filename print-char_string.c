@@ -15,6 +15,7 @@ int _printf(const char *format, ...)
 	char c;
 	const char *s;
 
+
 	va_start(args, format);
 	while (format[i] != '\0' && format != NULL)
 	{
@@ -44,7 +45,7 @@ int _printf(const char *format, ...)
 					num_chars++;
 					break;
 				default:
-					write(STDOUT_FILENO, &format[i - 1], 2);
+					write(STDOUT_FILENO, &format[i - 1], 1);
 					num_chars += 2;
 					break;
 			}
