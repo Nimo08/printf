@@ -14,7 +14,7 @@ int _printf(const char *format, ...)
 	int i = 0;
 	char c;
 	char *s;
-	int count = 0;
+	int num_chars = 0;
 
 	va_start(args, format);
 	while (format[i] != '\0')
@@ -26,24 +26,24 @@ int _printf(const char *format, ...)
 				case 'c':
 					c = (char)va_arg(args, int);
 					write(STDOUT_FILENO, &c, 1);
-					count++;
+					num_chars++;
 					break;
 				case 's':
 					s = va_arg(args, char *);
 					if (s == NULL)
 					{
-						putchar('\n');
+						write(STDOUT_FILENO, "\n", 1);
 					}
 					write(STDOUT_FILENO, s, strlen(s));
-					count += strlen(s);
+					num_chars += strlen(s);
 					break;
 				case '%':
 					write(STDOUT_FILENO, "%", 1);
-					count++;
+					num_chars++;
 					break;
 				default:
-					write(STDOUT_FILENO, &i, 1);
-					count++;
+					write(STDOUT_FILENO, &format[i], 1);
+					num_chars++;
 					break;
 			}
 			i++;
@@ -51,10 +51,10 @@ int _printf(const char *format, ...)
 		else
 		{
 			write(STDOUT_FILENO, format + i, 1);
-			count++;
+			num_chars++;
 		}
 		i++;
 	}
 	va_end(args);
-	return (count);
+	return (num_chars);
 }
