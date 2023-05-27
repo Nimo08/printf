@@ -55,10 +55,6 @@ int _printf(const char *format, ...)
 		}
 		i++;
 	}
-	if (format == NULL)
-	{
-		return (-1);
-	}
 	va_end(args);
 	return (num_chars);
 }
