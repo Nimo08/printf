@@ -45,6 +45,9 @@ int _printf(const char *format, ...)
 					write(STDOUT_FILENO, "%", 1);
 					num_chars++;
 					break;
+				default:
+					write(STDOUT_FILENO, "\n", 1);
+					return (-1);
 			}
 			i++;
 		}
