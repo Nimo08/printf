@@ -16,10 +16,6 @@ int _printf(const char *format, ...)
 	char *s;
 
 	va_start(args, format);
-	/*if (format == NULL)
-	{
-		write(STDOUT_FILENO, "(NULL)", 6);
-	}*/
 	while (format[i] != '\0')
 	{
 		if (format[i] == '%')
@@ -62,6 +58,6 @@ int _printf(const char *format, ...)
 		}
 		i++;
 	}
-	va_end(args);
 	return (num_chars);
+	va_end(args);
 }
