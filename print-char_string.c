@@ -25,7 +25,8 @@ int _printf(const char *format, ...)
 			{
 				case 'c':
 					c = (char)va_arg(args, int);
-					write(STDOUT_FILENO, &c, 1);
+					if (write(STDOUT_FILENO, &c, 1) < 0)
+						return (-1);
 					num_chars++;
 					break;
 				case 's':
