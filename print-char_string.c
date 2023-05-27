@@ -54,7 +54,7 @@ int _printf(const char *format, ...)
 		}
 		i++;
 	}
-	if (format == NULL)
+	if (format[i] != '\0' && format[i] != 'c' && format[i] != 's' && format[i] != '%')
 	{
 		write(STDOUT_FILENO, "(NULL)", 6);
 		
