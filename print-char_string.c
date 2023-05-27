@@ -30,12 +30,6 @@ int _printf(const char *format, ...)
 					break;
 				case 's':
 					s = va_arg(args, char *);
-					if (s == NULL)
-					{
-						write(STDOUT_FILENO, "(NULL)", 6);
-						num_chars++;
-						i++;
-					}
 					write(STDOUT_FILENO, s, strlen(s));
 					num_chars += strlen(s);
 					break;
