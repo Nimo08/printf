@@ -39,14 +39,26 @@ int _printf(const char *format, ...)
 					s = va_arg(args, const char *);
 					if (s == NULL)
 					{
-						write(STDOUT_FILENO, "(NULL)", 6);
+						if (write(STDOUT_FILENO, "(NULL)", 6) < 0)
+						{
+							return (-1);
+						}
 						num_chars += 6;
 					}
-					write(STDOUT_FILENO, s, strlen(s));
+					else
+					{
+					    if (write(STDOUT_FILENO, s, strlen(s)) < 0)
+						{	
+							return (-1);
+						}
+					}
 					num_chars += strlen(s);
 					break;
 				case '%':
-					write(STDOUT_FILENO, "%", 1);
+					if (write(STDOUT_FILENO, "%", 1) < 0)
+					{
+						return (-1);
+					}
 					num_chars++;
 					break;
 				default:
