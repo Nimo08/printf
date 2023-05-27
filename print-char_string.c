@@ -13,7 +13,7 @@ int _printf(const char *format, ...)
 	va_list args;
 	int i = 0, num_chars = 0;
 	char c;
-	char *s;
+	const char *s;
 
 	va_start(args, format);
 	while (format[i] != '\0')
@@ -29,7 +29,12 @@ int _printf(const char *format, ...)
 					num_chars++;
 					break;
 				case 's':
-					s = va_arg(args, char *);
+					s = va_arg(args, const char *);
+					if (s == NULL)
+					{
+						write(STDOUT_FILENO, "(NULL)", 6);
+						num_chars += 6;
+					}
 					write(STDOUT_FILENO, s, strlen(s));
 					num_chars += strlen(s);
 					break;
