@@ -69,7 +69,10 @@ int _printf(const char *format, ...)
 		}
 		else
 		{
-			write(STDOUT_FILENO, &format[i], 1);
+			if (write(STDOUT_FILENO, &format[i], 1) < 0)
+			{
+				return (-1);
+			}
 			num_chars++;
 		}
 		i++;
