@@ -39,8 +39,7 @@ int _printf(const char *format, ...)
 					num_chars += strlen(s);
 					break;
 				case '%':
-					if (write(STDOUT_FILENO, "%", 1) < 0)
-						return (-1);
+					write(STDOUT_FILENO, "%", 1);
 					num_chars++;
 					break;
 				default:
@@ -55,6 +54,10 @@ int _printf(const char *format, ...)
 			num_chars++;
 		}
 		i++;
+	}
+	if (format == NULL)
+	{
+		return (-1);
 	}
 	va_end(args);
 	return (num_chars);
