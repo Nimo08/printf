@@ -56,11 +56,11 @@ int _printf(const char *format, ...)
 			write(STDOUT_FILENO, &format[i], 1);
 			num_chars++;
 		}
-		i++;
 		if (format == NULL)
 		{
 			write(STDOUT_FILENO, "(NULL)", 6);
 		}
+		i++;
 	}
 	va_end(args);
 	return (num_chars);
