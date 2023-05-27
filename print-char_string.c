@@ -16,7 +16,7 @@ int _printf(const char *format, ...)
 	const char *s;
 
 	va_start(args, format);
-	while (format[i] != '\0' && format != NULL)
+	while (format[i] != '\0')
 	{
 		if (format[i] == '%')
 		{
@@ -26,9 +26,7 @@ int _printf(const char *format, ...)
 				case 'c':
 					c = (char)va_arg(args, int);
 					if (write(STDOUT_FILENO, &c, 1) < 0)
-					{
 						return (-1);
-					}
 					num_chars++;
 					break;
 				case 's':
