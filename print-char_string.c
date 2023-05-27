@@ -15,12 +15,11 @@ int _printf(const char *format, ...)
 	char c;
 	char *s;
 
-	va_start(args, format);
-	while (format == NULL)
+	if (format == NULL)
 	{
-		write(STDOUT_FILENO, "(NULL)", 6);
-		return (-1);
+		write(STDOUT_FILENO, "(NULL)", 6);	
 	}
+	va_start(args, format);
 	while (format[i] != '\0')
 	{
 		if (format[i] == '%')
