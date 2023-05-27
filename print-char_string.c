@@ -21,6 +21,10 @@ int _printf(const char *format, ...)
 	{
 		if (format[i] == '%')
 		{
+			if (s == NULL)
+			{
+				putchar('\n');
+			}
 			switch (format[i + 1])
 			{
 				case 'c':
@@ -30,10 +34,6 @@ int _printf(const char *format, ...)
 					break;
 				case 's':
 					s = va_arg(args, char *);
-					if (s == NULL)
-					{
-						putchar('\n');
-					}
 					write(STDOUT_FILENO, s, strlen(s));
 					count += strlen(s);
 					break;
