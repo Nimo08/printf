@@ -42,8 +42,10 @@ int _printf(const char *format, ...)
 					num_chars++;
 					break;
 				default:
-					write(STDOUT_FILENO, "\n", 1);
-					return (-1);
+					write(STDOUT_FILENO, "%", 1);
+					write(STDOUT_FILENO, &format[i], 1);
+					num_chars += 2;	
+					break;
 			}
 			i++;
 		}
@@ -53,11 +55,6 @@ int _printf(const char *format, ...)
 			num_chars++;
 		}
 		i++;
-	}
-	if (format[i] != '\0' && format[i] != 'c' && format[i] != 's' && format[i] != '%')
-	{
-		write(STDOUT_FILENO, "(NULL)", 6);
-		
 	}
 	va_end(args);
 	return (num_chars);
