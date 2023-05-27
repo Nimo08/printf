@@ -21,27 +21,26 @@ int _printf(const char *format, ...)
 	{
 		if (format[i] == '%')
 		{
-			if (format[i + 1] == 'c')
+			switch (format[i + 1])
 			{
+				case 'c':
 				c = (char)va_arg(args, int);
 				write(STDOUT_FILENO, &c, 1);
-			}
-			else if (format[i + 1] == 's')
-			{
+				break;
+				case 's':
 				s = va_arg(args, char *);
 				if (s == NULL)
 					write(STDOUT_FILENO, n, strlen(n));
 				else
 					write(STDOUT_FILENO, s, strlen(s));
-			}
-			else if (format[i + 1] == '%')
-			{
+				break;
+				case '%':
 				write(STDOUT_FILENO, "%", 1);
 				i++;
-			}
-			else if (format[i] == '%')
-			{
+				break;
+				default:
 				write(STDOUT_FILENO, format + i, 1);
+				break;
 			}
 			i++;
 		}
