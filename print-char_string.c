@@ -30,9 +30,9 @@ int _printf(const char *format, ...)
 					break;
 				case 's':
 					s = va_arg(args, char *);
-					while (s[i] == '\0')
+					while (s == NULL)
 					{
-						write(STDOUT_FILENO, &s[i], 1);
+						write(STDOUT_FILENO, s, 1);
 						num_chars++;
 						i++;
 					}
