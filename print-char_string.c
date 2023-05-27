@@ -18,6 +18,7 @@ int _printf(const char *format, ...)
 	if (format == NULL)
 	{
 		write(STDOUT_FILENO, "(NULL)", 6);
+		num_chars++;
 	}
 	va_start(args, format);
 	while (format[i] != '\0')
