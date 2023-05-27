@@ -15,12 +15,11 @@ int _printf(const char *format, ...)
 	char c;
 	char *s;
 
+	va_start(args, format);
 	if (format == NULL)
 	{
 		write(STDOUT_FILENO, "(NULL)", 6);
-		return (-1);	
 	}
-	va_start(args, format);
 	while (format[i] != '\0')
 	{
 		if (format[i] == '%')
@@ -35,10 +34,7 @@ int _printf(const char *format, ...)
 				case 's':
 					s = va_arg(args, char *);
 					if (s == NULL)
-					{
 						write(STDOUT_FILENO, "(null)", 6);
-						return (-1);
-					}
 					write(STDOUT_FILENO, s, strlen(s));
 					num_chars += strlen(s);
 					break;
