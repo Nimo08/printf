@@ -34,7 +34,10 @@ int _printf(const char *format, ...)
 				case 's':
 					s = va_arg(args, char *);
 					if (s == NULL)
+					{
 						write(STDOUT_FILENO, "(null)", 6);
+						num_chars += 6;
+					}
 					write(STDOUT_FILENO, s, strlen(s));
 					num_chars += strlen(s);
 					break;
