@@ -37,7 +37,7 @@ int _printf(const char *format, ...)
 					if (s == NULL)
 					{
 						write(STDOUT_FILENO, "(null)", 6);
-						num_chars += 6;
+						num_chars ++;
 					}
 					write(STDOUT_FILENO, s, strlen(s));
 					num_chars += strlen(s);
@@ -48,8 +48,6 @@ int _printf(const char *format, ...)
 					break;
 				default:
 					write(STDOUT_FILENO, &format[i - 1], 1);
-					num_chars++;
-					write(STDOUT_FILENO, &format[i], 1);
 					num_chars++;	
 					break;
 			}
