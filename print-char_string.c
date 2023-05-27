@@ -37,7 +37,7 @@ int _printf(const char *format, ...)
 						i++;
 					}
 					write(STDOUT_FILENO, s, strlen(s));
-					num_chars++;
+					num_chars += strlen(s);
 					break;
 				case '%':
 					write(STDOUT_FILENO, "%", 1);
