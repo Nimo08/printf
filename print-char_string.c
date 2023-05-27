@@ -39,7 +39,7 @@ int _printf(const char *format, ...)
 					num_chars += strlen(s);
 					break;
 				case '%':
-					if (write(STDOUT_FILENO, "%", 1) < 1)
+					if (write(STDOUT_FILENO, "%", 1) < 0)
 						return (-1);
 					num_chars++;
 					break;
