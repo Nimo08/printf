@@ -32,7 +32,7 @@ int _printf(const char *format, ...)
 					s = va_arg(args, char *);
 					if (s == NULL)
 					{
-						write(STDOUT_FILENO, "\n", 1);
+						write(STDOUT_FILENO, "(NULL)", 6);
 						num_chars++;
 						i++;
 					}
