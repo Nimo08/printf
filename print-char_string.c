@@ -52,12 +52,13 @@ int _printf(const char *format, ...)
 			write(STDOUT_FILENO, &format[i], 1);
 			num_chars++;
 		}
-		if (format == NULL)
-		{
-			write(STDOUT_FILENO, "(NULL)", 6);
-		}
 		i++;
 	}
-	return (num_chars);
+	if (format == NULL)
+	{
+		write(STDOUT_FILENO, "(NULL)", 6);
+		
+	}
 	va_end(args);
+	return (num_chars);
 }
