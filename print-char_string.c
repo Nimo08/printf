@@ -30,12 +30,15 @@ int _printf(const char *format, ...)
 					break;
 				case 's':
 					s = va_arg(args, char *);
+					if (s[i] == '\0')
+					{
+						putchar('\n');
+					}
 					write(STDOUT_FILENO, s, strlen(s));
 					count += strlen(s);
 					break;
 				case '%':
-					write(STDOUT_FILENO, "%", 1);
-					i++;
+					write(STDOUT_FILENO, "%", 1);	
 					count++;
 					break;
 				default:
