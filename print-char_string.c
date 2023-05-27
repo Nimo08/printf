@@ -14,7 +14,11 @@ int _printf(const char *format, ...)
 	int i = 0, num_chars = 0;
 	char c;
 	const char *s;
-
+	
+	if (format == NULL)
+	{
+		return (-1);
+	}
 	va_start(args, format);
 	while (format[i] != '\0' && format != NULL)
 	{
@@ -25,7 +29,10 @@ int _printf(const char *format, ...)
 			{
 				case 'c':
 					c = (char)va_arg(args, int);
-					write(STDOUT_FILENO, &c, 1);
+					if (write(STDOUT_FILENO, &c, 1) < 0)
+					{
+						return (-1);
+					}
 					num_chars++;
 					break;
 				case 's':
