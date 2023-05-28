@@ -31,6 +31,10 @@ int _printf(const char *format, ...)
 				case '%':
 					num_chars += _printf_percent(args);
 					break;
+				default:
+					if (write(STDOUT_FILENO, &format[i - 1], 1) == -1)
+						return (-1);
+					num_chars++;
 			}
 		}
 		else
