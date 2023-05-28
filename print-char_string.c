@@ -14,7 +14,10 @@ int _printf(const char *format, ...)
 	int i = 0, num_chars = 0;
 
 	if (format == NULL)
-		return (0);
+	{
+		write(STDERR_FILENO, "Error: Format string is NULL\n", 29);
+		return (-1);
+	}
 	va_start(args, format);
 	while (format[i] != '\0')
 	{
