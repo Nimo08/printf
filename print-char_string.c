@@ -71,22 +71,19 @@ int _printf_char(va_list args)
 int _printf_string(va_list args)
 {
 	const char *s;
-	int len = 0, len_null;
 	const char *null_s;
 
 	null_s = "(null)";
-	len_null = strlen(null_s);
 	s = va_arg(args, const char *);
 	if (s == NULL)
 	{
-		if (write(STDOUT_FILENO, null_s, len_null) == -1)
+		if (write(STDOUT_FILENO, null_s, strlen(null_s)) == -1)
 			return (-1);
-		return (len_null);
+		return (strlen(null_s));
 	}
-	len = strlen(s);
-	if (write(STDOUT_FILENO, s, len) == -1)
+	if (write(STDOUT_FILENO, s, strlen(s)) == -1)
 		return (-1);
-	return (len);
+	return (strlen(s));
 }
 /**
  * _printf_percent - prints %
