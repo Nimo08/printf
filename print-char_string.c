@@ -11,9 +11,8 @@
 int _printf(const char *format, ...)
 {
 	va_list args;
-	int i = 0, num_chars = 0;
+	int i = 0, num_chars = 0, write_value;
 	char *s, c;
-
 
 	va_start(args, format);
 	while (format[i] != '\0')
@@ -25,11 +24,10 @@ int _printf(const char *format, ...)
 			{
 				case 'c':
 					c = (char)va_arg(args, int);
-					if (write(STDOUT_FILENO, &c, 1) == -1){
-						num_chars = -1;
-						break;
-					}
-					num_chars++;
+					write_value = write(STDOUT_FILENO, &c, 1);
+					if (write_value < 0)
+						return (-1);
+					num_chars += write_value;
 					break;
 				case 's':
 					s = va_arg(args, char *);
@@ -38,8 +36,10 @@ int _printf(const char *format, ...)
 						write(STDOUT_FILENO, "(NULL)", 6);
 						num_chars += 6;
 					}
-					write(STDOUT_FILENO, s, strlen(s));
-					num_chars += strlen(s);
+					write_value = write(STDOUT_FILENO, s, strlen(s));
+					if (write_value < 0)
+						return (-1);
+					num_chars += write_value;
 					break;
 				case '%':
 					write(STDOUT_FILENO, "%", 1);
