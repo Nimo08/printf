@@ -11,7 +11,7 @@
 int _printf(const char *format, ...)
 {
 	va_list args;
-	int i = 0, num_chars = 0, write_val, write_val1, write_val2;
+	int i = 0, num_chars = 0;
 	char *s, c;
 
 	va_start(args, format);
@@ -24,46 +24,42 @@ int _printf(const char *format, ...)
 			{
 				case 'c':
 					c = (char)va_arg(args, int);
-					write_val = write(STDOUT_FILENO, &c, 1);
-					if (write_val < 0)
+					if (write(STDOUT_FILENO, &c, 1) < 0)
 						return (-1);
-					num_chars += write_val;
+					num_chars++;
 					break;
 				case 's':
 					s = va_arg(args, char *);
 					if (s == NULL)
 					{
-						write_val = write(STDOUT_FILENO, "(NULL)", 6);
-						if (write_val < 0)
+						if (write(STDOUT_FILENO, "(NULL)", 6) < 0)
 							return (-1);
-						num_chars += write_val;
+						num_chars += 6;
 					}
-					write_val = write(STDOUT_FILENO, s, strlen(s));
-					if (write_val < 0)
+					if (write(STDOUT_FILENO, s, strlen(s)) < 0)
 						return (-1);
-					num_chars += write_val;
+					num_chars += strlen(s);
 					break;
 				case '%':
-					write_val = write(STDOUT_FILENO, "%", 1);
-					if (write_val < 0)
+					if (write(STDOUT_FILENO, "%", 1) < 0)
 						return (-1);
-					num_chars += write_val;
+					num_chars++;
 					break;
 				default:
-					write_val1 = write(STDOUT_FILENO, &format[i - 1], 1);
-					write_val2 = write(STDOUT_FILENO, &format[i], 1);
-					if (write_val1 < 0 || write_val2 < 0)
+					if (write(STDOUT_FILENO, &format[i - 1], 1) < 0)
 						return (-1);
-					num_chars += write_val1 + write_val2;
+					num_chars++;
+					if (write(STDOUT_FILENO, &format[i], 1) < 0)
+						return (-1);
+					num_chars++;
 					break;
 			}
 		}
 		else
 		{
-			write_val = write(STDOUT_FILENO, &format[i], 1);
-			if (write_val < 0)
+			if (write(STDOUT_FILENO, &format[i], 1) < 0)
 				return (-1);
-			num_chars += write_val;
+			num_chars++;
 		}
 		i++;
 	}
