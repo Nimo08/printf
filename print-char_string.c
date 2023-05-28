@@ -80,7 +80,7 @@ int _printf_string(va_list args)
 	s = va_arg(args, char *);
 	if (s == NULL)
 	{
-		return (0);
+		return (-1);
 	}
 	while (s[len] != '\0')
 	{
