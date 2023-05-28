@@ -70,10 +70,10 @@ int _printf_char(va_list args)
  */
 int _printf_string(va_list args)
 {
-	const char *s;
+	char *s;
 	int len = 0;
 
-	s = va_arg(args, const char*);
+	s = va_arg(args, char*);
 	if (s == NULL)
 	{
 		s = "(null)";
