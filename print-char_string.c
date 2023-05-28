@@ -80,9 +80,9 @@ int _printf_string(va_list args)
 	s = va_arg(args, char *);
 	if (s == NULL)
 	{
-		if (write(STDOUT_FILENO, "\n", 1) == -1)
+		if (write(STDOUT_FILENO, "NULL", 4) == -1)
 			return (-1);
-		return (1);
+		return (4);
 	}
 	while (s[len] != '\0')
 	{
@@ -94,6 +94,7 @@ int _printf_string(va_list args)
 }
 /**
  * _printf_percent - prints %
+ * @args: va_list
  * Return: num_chars
  */
 int _printf_percent(va_list args)
