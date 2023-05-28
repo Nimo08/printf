@@ -15,7 +15,7 @@ int _printf(const char *format, ...)
 
 	if (format == NULL)
 	{
-		write(STDERR_FILENO, "\n", 1);
+		write(STDOUT_FILENO, "\n", 1);
 		return (-1);
 	}
 	va_start(args, format);
