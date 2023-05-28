@@ -33,8 +33,10 @@ int _printf(const char *format, ...)
 					s = va_arg(args, char *);
 					if (s == NULL)
 					{
-						write(STDOUT_FILENO, "(NULL)", 6);
-						num_chars += 6;
+						write_val = write(STDOUT_FILENO, "(NULL)", 6);
+						if (write_val < 0)
+							return (-1);
+						num_chars += write_val;
 					}
 					write_val = write(STDOUT_FILENO, s, strlen(s));
 					if (write_val < 0)
