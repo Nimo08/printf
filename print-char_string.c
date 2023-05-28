@@ -49,9 +49,9 @@ int _printf(const char *format, ...)
 		}
 		i++;
 	}
-	va_end(args);
 	if (error)
 		return (-2);
+	va_end(args);
 	return (num_chars);
 }
 /**
