@@ -1,7 +1,5 @@
 #include "main.h"
 #include <stdarg.h>
-#include <stdio.h>
-#include <string.h>
 #include <unistd.h>
 /**
  * _printf - prints char, string, %
@@ -80,9 +78,9 @@ int _printf_string(va_list args)
 	s = va_arg(args, char *);
 	if (s == NULL)
 	{
-		if (write(STDOUT_FILENO, "NULL", 4) == -1)
+		if (write(STDOUT_FILENO, "(NULL)", 6) == -1)
 			return (-1);
-		return (4);
+		return (6);
 	}
 	while (s[len] != '\0')
 	{
