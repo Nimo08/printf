@@ -35,6 +35,9 @@ int _printf(const char *format, ...)
 					if (write(STDOUT_FILENO, &format[i - 1], 1) == -1)
 						return (-1);
 					num_chars++;
+					if (write(STDOUT_FILENO, &format[i], 1) == -1)
+						return (-1);
+					num_chars++;
 					break;
 			}
 		}
