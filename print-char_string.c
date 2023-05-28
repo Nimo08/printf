@@ -73,7 +73,7 @@ int _printf_string(va_list args)
 	const char *s;
 	int len = 0;
 
-	s = va_arg(args, const char *);
+	s = va_arg(args, const char*);
 	if (s == NULL)
 	{
 		s = "(null)";
