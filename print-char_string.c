@@ -32,7 +32,7 @@ int _printf(const char *format, ...)
 					num_chars += _printf_percent(args);
 					break;
 				default:
-					if (write(1, &format[i - 1], sizeof(char)) == -1)
+					if (write(1, &format[i - 1], 2) == -1)
 						return (-1);
 					num_chars += 2;
 					break;
