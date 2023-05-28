@@ -10,7 +10,7 @@
 int _printf(const char *format, ...)
 {
 	va_list args;
-	int i = 0, num_chars = 0;
+	int i = 0, num_chars = 0, error = 0;
 
 	if (format == NULL)
 		return (-1);
@@ -50,6 +50,8 @@ int _printf(const char *format, ...)
 		i++;
 	}
 	va_end(args);
+	if (error)
+		return (-2);
 	return (num_chars);
 }
 /**
@@ -63,7 +65,7 @@ int _printf_char(va_list args)
 
 	c = (char)va_arg(args, int);
 	if (write(STDOUT_FILENO, &c, 1) == -1)
-		return (-1);
+		return (-2);
 	return (1);
 }
 /**
@@ -80,7 +82,7 @@ int _printf_string(va_list args)
 	if (s == NULL)
 	{
 		if (write(STDOUT_FILENO, "(NULL)", 6) == -1)
-			return (-1);
+			return (-2);
 		return (6);
 	}
 	while (s[len] != '\0')
@@ -88,7 +90,7 @@ int _printf_string(va_list args)
 		len++;
 	}
 	if (write(STDOUT_FILENO, s, len) == -1)
-		return (-1);
+		return (-2);
 	return (len);
 }
 /**
@@ -100,6 +102,6 @@ int _printf_percent(va_list args)
 {
 	(void) args;
 	if (write(STDOUT_FILENO, "%", 1) == -1)
-		return (-1);
+		return (-2);
 	return (1);
 }
