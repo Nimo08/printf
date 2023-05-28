@@ -11,7 +11,7 @@
 int _printf(const char *format, ...)
 {
 	va_list args;
-	int i = 0, num_chars = 0, len = 0;
+	int i = 0, num_chars = 0;
 	char c;
 	const char *s;
 
@@ -36,13 +36,8 @@ int _printf(const char *format, ...)
 						write(STDOUT_FILENO, "(NULL)", 6);
 						num_chars += 6;
 					}
-					else
-					{
-						while (s[len] != '\0')
-							len++;
-					write(STDOUT_FILENO, s, len);
-					num_chars += len;
-					}
+					write(STDOUT_FILENO, s, strlen(s));
+					num_chars += strlen(s);
 					break;
 				case '%':
 					write(STDOUT_FILENO, "%", 1);
