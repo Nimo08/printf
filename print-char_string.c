@@ -32,9 +32,9 @@ int _printf(const char *format, ...)
 					num_chars += _printf_percent(args);
 					break;
 				default:
-					if (write(STDOUT_FILENO, &format[i], 1) == -1)
+					if (write(STDOUT_FILENO, &format[i - 1], 2) == -1)
 						return (-1);
-					num_chars++;
+					num_chars += 2;
 					break;
 			}
 		}
