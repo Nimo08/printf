@@ -1,6 +1,6 @@
+#include "main.h"
 #include <stdarg.h>
 #include <stdio.h>
-#include "main.h"
 #include <string.h>
 #include <unistd.h>
 /**
@@ -12,7 +12,6 @@ int _printf(const char *format, ...)
 {
 	va_list args;
 	int i = 0, num_chars = 0;
-	char *s, c;
 
 	va_start(args, format);
 	while (format[i] != '\0' && format != NULL)
@@ -23,27 +22,13 @@ int _printf(const char *format, ...)
 			switch (format[i])
 			{
 				case 'c':
-					c = (char)va_arg(args, int);
-					if (write(STDOUT_FILENO, &c, 1) < 0)
-						return (-1);
-					num_chars++;
+					num_chars += _printf_char(args);
 					break;
 				case 's':
-					s = va_arg(args, char *);
-					if (s == NULL)
-					{
-						if (write(STDOUT_FILENO, "(NULL)", 6) < 0)
-							return (-1);
-						num_chars += 6;
-					}
-					if (write(STDOUT_FILENO, s, strlen(s)) < 0)
-						return (-1);
-					num_chars += strlen(s);
+					num_chars += _printf_string(args);
 					break;
 				case '%':
-					if (write(STDOUT_FILENO, "%", 1) < 0)
-						return (-1);
-					num_chars++;
+					num_chars += _printf_percent(args);
 					break;
 				default:
 					if (write(STDOUT_FILENO, &format[i - 1], 1) < 0)
@@ -65,4 +50,52 @@ int _printf(const char *format, ...)
 	}
 	va_end(args);
 	return (num_chars);
+}
+/**
+ * _printf_char - prints char
+ * @args: va_list containing char
+ * Return: num_chars
+ */
+int _printf_char(va_list args)
+{
+	char c;
+
+	c = (char)va_arg(args, int);
+	if (write(STDOUT_FILENO, &c, 1) < 0)
+		return (-1);
+	return (1);
+}
+/**
+ * _printf_string - prints string
+ * @args: va_list containing string
+ * Return: num_chars
+ */
+int _printf_string(va_list args)
+{
+	char *s;
+	int len;
+
+	s = va_arg(args, char *);
+	if (s == NULL)
+	{
+		if (write(STDOUT_FILENO, "(NULL)", 6) < 0)
+			return (-1);
+		return (6);
+	}
+	len = strlen(s);
+	if (write(STDOUT_FILENO, s, len) < 0)
+		return (-1);
+	return (len);
+}
+/**
+ * _printf_percent - prints %
+ * @args: va_list
+ * Return: num_chars
+ */
+int _printf_percent(va_list args)
+{
+	(void) args;
+	if (write(STDOUT_FILENO, "%", 1) < 0)
+		return (-1);
+	return (1);
 }
