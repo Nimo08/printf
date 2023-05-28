@@ -25,7 +25,7 @@ int _printf(const char *format, ...)
 			{
 				case 'c':
 					c = (char)va_arg(args, int);
-					if (write(STDOUT_FILENO, &c, 1) < 0)
+					if (write(STDOUT_FILENO, &c, 1) != 1)
 						return (-1);
 					num_chars++;
 					break;
@@ -33,21 +33,18 @@ int _printf(const char *format, ...)
 					s = va_arg(args, char *);
 					if (s == NULL)
 					{
-						if (write(STDOUT_FILENO, "(NULL)", 6) < 0)
-							return (-1);
+						write(STDOUT_FILENO, "(NULL)", 6);
 						num_chars += 6;
 					}
-					if (write(STDOUT_FILENO, s, strlen(s)) < 0)
-						return (-1);
+					write(STDOUT_FILENO, s, strlen(s));
 					num_chars += strlen(s);
 					break;
 				case '%':
-					write(STDOUT_FILENO, "%", 1);
+					if (write(STDOUT_FILENO, "%", 1) != 1)
+						return (-1);
 					num_chars++;
 					break;
 				default:
-					write(STDOUT_FILENO, &format[i - 1], 1);
-					num_chars++;
 					write(STDOUT_FILENO, &format[i], 1);
 					num_chars++;
 					break;
