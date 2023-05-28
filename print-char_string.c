@@ -77,6 +77,7 @@ int _printf_string(va_list args)
 	if (s == NULL)
 	{
 		s = "(null)";
+		return (0);
 	}
 	len = strlen(s);
 	if (write(1, s, len) == -1)
