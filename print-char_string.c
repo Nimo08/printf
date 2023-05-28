@@ -80,9 +80,7 @@ int _printf_string(va_list args)
 	s = va_arg(args, char *);
 	if (s == NULL)
 	{
-		if (write(STDOUT_FILENO, "\n", 1) == -1)
-			return (-1);
-		return (1);
+		return (0);
 	}
 	while (s[len] != '\0')
 	{
