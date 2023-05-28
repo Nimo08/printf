@@ -79,7 +79,7 @@ int _printf_string(va_list args)
 	s = va_arg(args, char *);
 	if (s == NULL)
 	{
-		s = "(NULL)";
+		s = "(nil)";
 	}
 	len = strlen(s);
 	if (write(STDOUT_FILENO, s, len) == -1)
