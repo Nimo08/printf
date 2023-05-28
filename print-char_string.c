@@ -1,6 +1,7 @@
 #include "main.h"
 #include <stdarg.h>
 #include <unistd.h>
+#include <string.h>
 /**
  * _printf - prints char, string, %
  * @format: character string
@@ -70,19 +71,19 @@ int _printf_char(va_list args)
 int _printf_string(va_list args)
 {
 	char *s;
-	int len = 0;
+	int len = 0, len_null;
+	const char *null_s;
 
+	null_s = "(null)";
+	len_null = strlen(null_s);
 	s = va_arg(args, char *);
 	if (s == NULL)
 	{
-		if (write(STDOUT_FILENO, "(null)", 6) == -1)
+		if (write(STDOUT_FILENO, null_s, len_null) == -1)
 			return (-1);
-		return (6);
+		return (len_null);
 	}
-	while (s[len] != '\0')
-	{
-		len++;
-	}
+	len = strlen(s);
 	if (write(STDOUT_FILENO, s, len) == -1)
 		return (-1);
 	return (len);
