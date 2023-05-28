@@ -14,10 +14,7 @@ int _printf(const char *format, ...)
 	int i = 0, num_chars = 0;
 
 	if (format == NULL)
-	{
-		write(STDOUT_FILENO, "\n", 1);
 		return (-1);
-	}
 	va_start(args, format);
 	while (format[i] != '\0')
 	{
