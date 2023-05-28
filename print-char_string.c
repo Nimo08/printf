@@ -15,7 +15,7 @@ int _printf(const char *format, ...)
 	if (format == NULL)
 		return (-1);
 	va_start(args, format);
-	while (format && format[i] != '\0')
+	while (format[i] != '\0')
 	{
 		if (format[i] == '%')
 		{
@@ -78,10 +78,7 @@ int _printf_string(va_list args)
 	{
 		s = "(null)";
 	}
-	while (s[len] != '\0')
-	{
-		len++;
-	}
+	len = strlen(s);
 	if (write(STDOUT_FILENO, s, len) == -1)
 		return (-1);
 	return (len);
