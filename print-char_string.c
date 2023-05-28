@@ -74,7 +74,7 @@ int _printf_char(va_list args)
 int _printf_string(va_list args)
 {
 	char *s;
-	int len;
+	int len = 0;
 
 	s = va_arg(args, char *);
 	if (s == NULL)
@@ -83,7 +83,10 @@ int _printf_string(va_list args)
 			return (-1);
 		return (6);
 	}
-	len = strlen(s);
+	while (s[len] != '\0')
+	{
+		len++;
+	}
 	if (write(STDOUT_FILENO, s, len) == -1)
 		return (-1);
 	return (len);
