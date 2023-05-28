@@ -42,8 +42,10 @@ int _printf(const char *format, ...)
 					num_chars += write_val;
 					break;
 				case '%':
-					write(STDOUT_FILENO, "%", 1);
-					num_chars++;
+					write_val = write(STDOUT_FILENO, "%", 1);
+					if (write_val < 0)
+						return (-1);
+					num_chars += write_val;
 					break;
 				default:
 					write_val1 = write(STDOUT_FILENO, &format[i - 1], 1);
