@@ -32,9 +32,9 @@ int _printf(const char *format, ...)
 					num_chars += _printf_percent(args);
 					break;
 				default:
-					if (write(1, &format[i - 1], 1) == -1)
+					if (write(1, &format[i - 1], 2) == -1)
 						return (-1);
-					num_chars++;
+					num_chars += 2;
 					break;
 			}
 		}
@@ -71,7 +71,7 @@ int _printf_char(va_list args)
 int _printf_string(va_list args)
 {
 	char *s;
-	int len = 0;
+	size_t len;
 
 	s = va_arg(args, char*);
 	if (s == NULL)
@@ -81,7 +81,7 @@ int _printf_string(va_list args)
 	len = strlen(s);
 	if (write(1, s, len) == -1)
 		return (-1);
-	return (len);
+	return ((int)len);
 }
 /**
  * _printf_percent - prints %
