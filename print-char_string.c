@@ -70,13 +70,13 @@ int _printf_char(va_list args)
  */
 int _printf_string(va_list args)
 {
-	char *s;
+	const char *s;
 	int len = 0, len_null;
 	const char *null_s;
 
 	null_s = "(null)";
 	len_null = strlen(null_s);
-	s = va_arg(args, char *);
+	s = va_arg(args, const char *);
 	if (s == NULL)
 	{
 		if (write(STDOUT_FILENO, null_s, len_null) == -1)
