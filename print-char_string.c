@@ -14,7 +14,7 @@ int _printf(const char *format, ...)
 	int i = 0, num_chars = 0;
 
 	if (format == NULL)
-		return (-1);
+		return (0);
 	va_start(args, format);
 	while (format[i] != '\0')
 	{
@@ -92,7 +92,6 @@ int _printf_string(va_list args)
 }
 /**
  * _printf_percent - prints %
- * @args: va_list
  * Return: num_chars
  */
 int _printf_percent(void)
