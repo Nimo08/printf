@@ -12,13 +12,10 @@ int _printf(const char *format, ...)
 	va_list args;
 	int i = 0, num_chars = 0;
 
-	while (format == NULL)
-	{
+	if (format == NULL)
 		return (-1);
-	format++;
-	}
 	va_start(args, format);
-	while (format && format[i] != '\0')
+	while (format[i] != '\0')
 	{
 		if (format[i] == '%')
 		{
@@ -35,14 +32,16 @@ int _printf(const char *format, ...)
 					num_chars += _printf_percent(args);
 					break;
 				default:
-					write(1, &format[i - 1], 2);
+					if (write(1, &format[i - 1], 2) == -1)
+						return (-1);
 					num_chars += 2;
 					break;
 			}
 		}
 		else
 		{
-			write(1, &format[i], 1);
+			if (write(1, &format[i], 1) == -1)
+				return (-1);
 			num_chars++;
 		}
 		i++;
