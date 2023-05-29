@@ -12,8 +12,11 @@ int _printf(const char *format, ...)
 	va_list args;
 	int i = 0, num_chars = 0;
 
-	if (format == NULL)
+	while (format == NULL)
+	{
 		return (-1);
+	format++;
+	}
 	va_start(args, format);
 	while (format && format[i] != '\0')
 	{
