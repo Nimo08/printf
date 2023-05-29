@@ -84,13 +84,13 @@ int _printf_string(va_list args)
 	return (len);
 }
 /**
- * _printf_percent - printf %
+ * _printf_percent - prints %
+ * @args: va_list
  * Return: num_chars
  */
 int _printf_percent(va_list args)
 {
 	(void) args;
-
 	if (write(1, "%", 1) == -1)
 		return (-1);
 	return (1);
