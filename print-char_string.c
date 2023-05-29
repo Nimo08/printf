@@ -71,7 +71,7 @@ int _printf_char(va_list args)
 int _printf_string(va_list args)
 {
 	char *s;
-	size_t len;
+	int len;
 
 	s = va_arg(args, char*);
 	if (s == NULL)
@@ -81,7 +81,7 @@ int _printf_string(va_list args)
 	len = strlen(s);
 	if (write(1, s, len) == -1)
 		return (-1);
-	return ((int)len);
+	return (len);
 }
 /**
  * _printf_percent - prints %
