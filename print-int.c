@@ -1,5 +1,5 @@
-#include "main.h"
 #include <stdarg.h>
+#include "main.h"
 #include <unistd.h>
 /**
  * _printf - prints decimal, integer
