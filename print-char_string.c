@@ -29,7 +29,7 @@ int _printf(const char *format, ...)
 					num_chars += _printf_string(args);
 					break;
 				case '%':
-					num_chars += _printf_percent(args);
+					num_chars += _printf_percent();
 					break;
 				default:
 					if (write(1, &format[i - 1], 2) == -1)
@@ -91,9 +91,8 @@ int _printf_string(va_list args)
  * @args: va_list
  * Return: num_chars
  */
-int _printf_percent(va_list args)
+int _printf_percent(void)
 {
-	(void) args;
 	if (write(1, "%", 1) == -1)
 		return (-1);
 	return (1);
