@@ -32,7 +32,7 @@ int _printf(const char *format, ...)
 					num_chars += _printf_percent();
 					break;
 				default:
-					if (write(STDOUT_FILENO, &format[i - 1], 2) == -1)
+					if (write(1, &format[i - 1], 2) == -1)
 						return (-1);
 					num_chars += 2;
 					break;
@@ -40,7 +40,7 @@ int _printf(const char *format, ...)
 		}
 		else
 		{
-			if (write(STDOUT_FILENO, &format[i], 1) == -1)
+			if (write(1, &format[i], 1) == -1)
 				return (-1);
 			num_chars++;
 		}
@@ -59,7 +59,7 @@ int _printf_char(va_list args)
 	char c;
 
 	c = (char)va_arg(args, int);
-	if (write(STDOUT_FILENO, &c, 1) == -1)
+	if (write(1, &c, 1) == -1)
 		return (-1);
 	return (1);
 }
@@ -82,7 +82,7 @@ int _printf_string(va_list args)
 	{
 		len++;
 	}
-	if (write(STDOUT_FILENO, s, len) == -1)
+	if (write(1, s, len) == -1)
 		return (-1);
 	return (len);
 }
@@ -92,7 +92,7 @@ int _printf_string(va_list args)
  */
 int _printf_percent(void)
 {
-	if (write(STDOUT_FILENO, "%", 1) == -1)
+	if (write(1, "%", 1) == -1)
 		return (-1);
 	return (1);
 }
