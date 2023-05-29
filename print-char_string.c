@@ -88,7 +88,6 @@ int _printf_string(va_list args)
 }
 /**
  * _printf_percent - prints %
- * @args: va_list
  * Return: num_chars
  */
 int _printf_percent(void)
