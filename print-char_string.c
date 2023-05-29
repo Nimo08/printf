@@ -29,8 +29,7 @@ int _printf(const char *format, ...)
 					num_chars += _printf_string(args);
 					break;
 				case '%':
-					if (write(1, "%", 1) == -1)
-						return (-1);
+					write(1, "%", 1);
 					num_chars++;
 					break;
 				default:
