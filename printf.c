@@ -21,23 +21,6 @@ int _printf(const char *format, ...)
 		{
 			i++;
 			num_chars += _printf_helper(&format[i], args);
-			switch (format[i])
-			{
-				case 'c':
-					num_chars += _printf_char(args);
-					break;
-				case 's':
-					num_chars += _printf_string(args);
-					break;
-				case '%':
-					num_chars += _printf_percent();
-					break;
-				default:
-					if (write(1, &format[i - 1], 2) == -1)
-						return (-1);
-					num_chars += 2;
-					break;
-			}
 		}
 		else
 		{

@@ -13,10 +13,18 @@ int _printf_helper(const char *format, va_list args)
 
 	switch (op)
 	{
+		case 'c':
+			return (_printf_char(args));
+		case 's':
+			return (_printf_string(args));
+		case '%':
+			return (_printf_percent());
 		case 'd':
 		case 'i':
 			return (_printf_int(args));
 		default:
-			return (-1);
+			if (write(1, format - 1, 2) == -1)
+				return (-1);
+			return (2);
 	}
 }
