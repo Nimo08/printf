@@ -22,6 +22,8 @@ int _printf_helper(const char *format, va_list args)
 		case 'd':
 		case 'i':
 			return (_printf_int(args));
+		case 'b':
+			return (_printf_binary(args));
 		default:
 			if (write(1, format - 1, 2) == -1)
 				return (-1);
