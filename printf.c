@@ -19,8 +19,8 @@ int _printf(const char *format, ...)
 	{
 		if (format[i] == '%')
 		{
-				i++;
-				num_chars += _printf_helper(&format[i], args);
+			i++;
+			num_chars += _printf_helper(&format[i], args);
 		}
 		else
 		{
