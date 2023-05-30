@@ -32,6 +32,8 @@ int _printf_helper(const char *format, va_list args)
 			return (_printf_upper_hex(args));
 		case 'x':
 			return (_printf_lower_hex(args));
+		case 'S':
+			return (_printf_S(args));
 		default:
 			if (write(1, format - 1, 2) == -1)
 				return (-1);

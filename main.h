@@ -14,5 +14,6 @@ int _printf_un(va_list args);
 int _printf_octals(va_list args);
 int _printf_upper_hex(va_list args);
 int _printf_lower_hex(va_list args);
+int _printf_S(va_list args);
 
 #endif /*MAIN_H*/
